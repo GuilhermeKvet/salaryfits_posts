@@ -11,6 +11,9 @@
     "salaryfits_posts.iml": true,
     "web": true,
     "windows": true,
-    ".idea": true
+    ".idea": true,
+    ".flutter-plugins-dependencies": true,
+    ".flutter-plugins": true,
+    "test": true
   }
 }
