@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuvigator/next.dart';
-import 'package:salaryfits_posts/routes/post_route.dart';
+import 'package:salaryfits_posts/routes/home_route.dart';
 
 class MyRouter extends NuRouter {
   @override

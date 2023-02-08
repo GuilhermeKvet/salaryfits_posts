@@ -1,10 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:salaryfits_posts/http/web_clients/posts_webclient.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:salaryfits_posts/screens/not_found.dart';
+import 'package:salaryfits_posts/http/web_clients/posts_webclient.dart';
+import 'package:salaryfits_posts/model/post_model.dart';
+
+import '../components/all_posts.dart';
 import '../components/progress/circular_progress.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
+  final dynamic enterHomePage;
+
+  HomePage({this.enterHomePage, super.key});
 
   final PostsWebClient _webclient = PostsWebClient();
 
@@ -18,6 +25,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Posts'),
           automaticallyImplyLeading: false,
+          centerTitle: true,
         ),
         body: FutureBuilder(
           future: _webclient.requestPosts(),
@@ -33,9 +41,18 @@ class HomePage extends StatelessWidget {
               case ConnectionState.active:
                 break;
               case ConnectionState.done:
-                break;
+                if (snapshot.hasData) {
+                  final String data = jsonEncode(snapshot.data);
+                  final List<Post> allPosts = jsonDecode(data);
+
+                  return AllPostsPage(
+                    allPosts: allPosts,
+                  );
+                } else {
+                  return NotFoundPage(onEnterHomePage: enterHomePage);
+                }
             }
-            return Center();
+            return NotFoundPage(onEnterHomePage: enterHomePage);
           },
         ),
       ),

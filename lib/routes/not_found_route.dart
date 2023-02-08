@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:nuvigator/next.dart';
+import 'package:salaryfits_posts/screens/not_found.dart';
 
-import '../screens/home_page.dart';
-
-class HomePageRoute extends NuRoute {
+class NotFoundPageRoute extends NuRoute {
   @override
   Widget build(BuildContext context, NuRouteSettings<Object?> settings) {
-    return const HomePage();
+    return NotFoundPage(
+      onEnterHomePage: () => nuvigator.open("home"),
+    );
   }
 
   @override
-  String get path => 'home';
+  String get path => 'notFound';
 
   @override
   ScreenType get screenType => materialScreenType;
