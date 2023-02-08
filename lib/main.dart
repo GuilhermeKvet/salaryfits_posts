@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nuvigator/next.dart';
 import 'package:salaryfits_posts/router.dart';
 
+import 'core/theme.dart';
+
 void main() {
   runApp(const SalaryFitsPosts());
 }
@@ -13,9 +15,7 @@ class SalaryFitsPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: salaryFitsTheme,
       home: Nuvigator(
         router: MyRouter(),
       ),
