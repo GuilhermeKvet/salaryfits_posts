@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:salaryfits_posts/model/post_model.dart';
 
+import '../utils/format_text.dart';
+
 class PostCard extends StatelessWidget {
   final Post post;
   final dynamic action;
@@ -63,14 +65,5 @@ class PostCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String formatText(String text) {
-    return text.split('\n').map((row) {
-      if (row.isNotEmpty) {
-        return row[0].toUpperCase() + row.substring(1);
-      }
-      return row;
-    }).join('\n');
   }
 }
