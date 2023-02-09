@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nuvigator/next.dart';
-import 'package:salaryfits_posts/screens/not_found.dart';
+import 'package:salaryfits_posts/screens/error_page.dart';
 
-class NotFoundPageRoute extends NuRoute {
+class ErrorPageRoute extends NuRoute {
   @override
   Widget build(BuildContext context, NuRouteSettings<Object?> settings) {
-    return const NotFoundPage();
+    return ErrorPage();
   }
 
   @override

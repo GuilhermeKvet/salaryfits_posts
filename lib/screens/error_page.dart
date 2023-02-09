@@ -3,11 +3,13 @@ import 'package:nuvigator/next.dart';
 
 import '../core/app_images.dart';
 
-class NotFoundPage extends StatelessWidget {
+class ErrorPage extends StatelessWidget {
+  final String? image;
   final String message;
 
-  const NotFoundPage({
+  ErrorPage({
     this.message = 'Não foi possível localizar nenhum post.',
+    this.image,
     super.key,
   });
 
@@ -22,7 +24,7 @@ class NotFoundPage extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  AppImages.error,
+                  image != null ? image! : AppImages.notfound,
                   width: double.maxFinite,
                   height: 300,
                 ),
