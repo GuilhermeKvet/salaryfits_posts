@@ -14,6 +14,10 @@
     ".idea": true,
     ".flutter-plugins-dependencies": true,
     ".flutter-plugins": true,
-    "test": true
+    "test": true,
+    "assets": true,
+    "build": true,
+    "android": true,
+    "ios": true
   }
 }
