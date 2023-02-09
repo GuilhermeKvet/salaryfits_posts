@@ -22,11 +22,11 @@ class PostsWebClient {
     if (_statusCodeResponses.containsKey(statusCode)) {
       return _statusCodeResponses[statusCode];
     }
-    return 'Unknown error';
+    return 'Erro inesperado, tente novamente';
   }
 
   static final Map<int, String> _statusCodeResponses = {
-    404: 'not found',
+    404: 'Not found',
     400: 'bad request',
   };
 }

@@ -7,7 +7,8 @@ class PostCard extends StatelessWidget {
   final Post post;
   final dynamic action;
 
-  PostCard({
+  const PostCard({
+    super.key,
     required this.post,
     required this.action,
   });
