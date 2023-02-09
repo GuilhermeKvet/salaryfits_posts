@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:salaryfits_posts/cache/cache_posts.dart';
+import 'package:salaryfits_posts/components/snackbar_dialog.dart';
 import 'package:salaryfits_posts/screens/not_found.dart';
 import 'package:salaryfits_posts/http/web_clients/posts_webclient.dart';
 import 'package:salaryfits_posts/model/post_model.dart';
@@ -7,10 +11,7 @@ import '../components/posts_list.dart';
 import '../components/progress/circular_progress.dart';
 
 class HomePage extends StatelessWidget {
-  final dynamic enterHomePage;
-  final dynamic onEnterDetailsPage;
-
-  HomePage({this.enterHomePage, this.onEnterDetailsPage, super.key});
+  HomePage({super.key});
 
   final PostsWebClient _webclient = PostsWebClient();
 
@@ -23,11 +24,6 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          iconTheme: const IconThemeData(
-            color: Color(0xfff7cc35),
-          ),
-          // backgroundColor: Colors.white,
-          shadowColor: const Color(0xfff7cc35),
           title: const Text(
             'Posts',
             style: TextStyle(
@@ -37,6 +33,11 @@ class HomePage extends StatelessWidget {
           ),
           automaticallyImplyLeading: false,
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () => _clearCache(context),
+            icon: const Icon(Icons.delete_outline_sharp),
+            color: Colors.black,
+          ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
@@ -57,26 +58,37 @@ class HomePage extends StatelessWidget {
                 if (snapshot.hasData) {
                   return snapshot.data!;
                 } else {
-                  return NotFoundPage(onEnterHomePage: enterHomePage);
+                  return const NotFoundPage();
                 }
             }
-            return NotFoundPage(onEnterHomePage: enterHomePage);
+            return const NotFoundPage();
           },
         ),
       ),
     );
   }
 
-  Future<PostsList> _generatePostsList() async {
+  Future<dynamic> _generatePostsList() async {
     List<Post> posts = [];
-    final List<dynamic> data = await _webclient.requestPosts();
 
-    for (final post in data) {
-      posts.add(Post(
-        title: post['title'],
-        body: post['body'],
-      ));
+    try {
+      final List<dynamic> data = await _webclient.requestPosts();
+      for (final post in data) {
+        posts.add(Post(
+          title: post['title'],
+          body: post['body'],
+        ));
+      }
+      return PostsList(posts: posts);
+    } on HttpException catch (_) {
+      return const NotFoundPage();
+    } on SocketException catch (_) {
+      return const NotFoundPage(message: 'Sem conexão :(');
     }
-    return PostsList(posts: posts, action: () => onEnterDetailsPage());
+  }
+
+  _clearCache(BuildContext context) {
+    clearCache();
+    snackbarDialog(context, 'Cache limpo com sucesso');
   }
 }

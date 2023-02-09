@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:salaryfits_posts/model/post_model.dart';
 
+import '../utils/format_text.dart';
+
 class PostCard extends StatelessWidget {
   final Post post;
-  final void Function() action;
+  final dynamic action;
 
-  PostCard({
+  const PostCard({
+    super.key,
     required this.post,
     required this.action,
   });
@@ -13,9 +16,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('tocou no ${post.title}');
-      },
+      onTap: () => action(),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(
@@ -65,14 +66,5 @@ class PostCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String formatText(String text) {
-    return text.split('\n').map((row) {
-      if (row.isNotEmpty) {
-        return row[0].toUpperCase() + row.substring(1);
-      }
-      return row;
-    }).join('\n');
   }
 }

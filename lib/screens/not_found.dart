@@ -4,12 +4,16 @@ import 'package:nuvigator/next.dart';
 import '../core/app_images.dart';
 
 class NotFoundPage extends StatelessWidget {
-  final dynamic onEnterHomePage;
+  final String message;
 
-  const NotFoundPage({required this.onEnterHomePage, super.key});
+  const NotFoundPage({
+    this.message = 'Não foi possível localizar nenhum post.',
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final nuvigator = Nuvigator.of(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -22,17 +26,27 @@ class NotFoundPage extends StatelessWidget {
                   width: double.maxFinite,
                   height: 300,
                 ),
-                const Text(
-                  'Não foi possível localizar nenhum post.',
-                  style: TextStyle(
+                Text(
+                  message,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w300,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Text(
+                    'Verifique sua conexão com a internet.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
                   child: ElevatedButton(
-                    onPressed: () => onEnterHomePage(),
+                    onPressed: () => nuvigator!.open("home"),
                     child: const Text("Recarregar"),
                   ),
                 )
