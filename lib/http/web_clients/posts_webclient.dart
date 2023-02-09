@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:salaryfits_posts/http/client.dart';
-import 'package:salaryfits_posts/model/post_model.dart';
 
 class PostsWebClient {
   final Uri url = Uri.https('jsonplaceholder.typicode.com', 'posts');
 
   Future<List> requestPosts() async {
     final response = await client.get(url);
-    final List<Post> allPosts = jsonDecode(response.body);
+    final List<dynamic> allPosts = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
       return allPosts;
