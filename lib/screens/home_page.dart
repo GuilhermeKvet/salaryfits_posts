@@ -25,11 +25,6 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          iconTheme: const IconThemeData(
-            color: Color(0xfff7cc35),
-          ),
-          // backgroundColor: Colors.white,
-          shadowColor: const Color(0xfff7cc35),
           title: const Text(
             'Posts',
             style: TextStyle(

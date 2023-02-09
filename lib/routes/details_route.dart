@@ -23,6 +23,7 @@ class DetailsPageRoute extends NuRoute<NuRouter, BodyArgs, String> {
     return DetailsPage(
       title: settings.args!.title,
       body: settings.args!.body,
+      onEnterHomePage: () => nuvigator.open("home"),
     );
   }
 
