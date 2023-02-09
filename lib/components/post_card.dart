@@ -3,7 +3,7 @@ import 'package:salaryfits_posts/model/post_model.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
-  final void Function() action;
+  final dynamic action;
 
   PostCard({
     required this.post,
@@ -13,9 +13,7 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        print('tocou no ${post.title}');
-      },
+      onTap: () => action(),
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(

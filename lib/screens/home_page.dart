@@ -7,10 +7,12 @@ import '../components/posts_list.dart';
 import '../components/progress/circular_progress.dart';
 
 class HomePage extends StatelessWidget {
-  final dynamic enterHomePage;
-  final dynamic onEnterDetailsPage;
+  final void Function() enterHomePage;
 
-  HomePage({this.enterHomePage, this.onEnterDetailsPage, super.key});
+  HomePage({
+    required this.enterHomePage,
+    super.key,
+  });
 
   final PostsWebClient _webclient = PostsWebClient();
 
@@ -77,6 +79,6 @@ class HomePage extends StatelessWidget {
         body: post['body'],
       ));
     }
-    return PostsList(posts: posts, action: () => onEnterDetailsPage());
+    return PostsList(posts: posts);
   }
 }
