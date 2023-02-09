@@ -6,9 +6,7 @@ import '../screens/home_page.dart';
 class HomePageRoute extends NuRoute {
   @override
   Widget build(BuildContext context, NuRouteSettings<Object?> settings) {
-    return HomePage(
-      enterHomePage: () => nuvigator.open("home"),
-    );
+    return HomePage();
   }
 
   @override

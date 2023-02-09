@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:salaryfits_posts/screens/not_found.dart';
 import 'package:salaryfits_posts/http/web_clients/posts_webclient.dart';
@@ -7,12 +9,7 @@ import '../components/posts_list.dart';
 import '../components/progress/circular_progress.dart';
 
 class HomePage extends StatelessWidget {
-  final void Function() enterHomePage;
-
-  HomePage({
-    required this.enterHomePage,
-    super.key,
-  });
+  HomePage({super.key});
 
   final PostsWebClient _webclient = PostsWebClient();
 
@@ -54,26 +51,32 @@ class HomePage extends StatelessWidget {
                 if (snapshot.hasData) {
                   return snapshot.data!;
                 } else {
-                  return NotFoundPage(onEnterHomePage: enterHomePage);
+                  return const NotFoundPage();
                 }
             }
-            return NotFoundPage(onEnterHomePage: enterHomePage);
+            return const NotFoundPage();
           },
         ),
       ),
     );
   }
 
-  Future<PostsList> _generatePostsList() async {
+  Future<dynamic> _generatePostsList() async {
     List<Post> posts = [];
-    final List<dynamic> data = await _webclient.requestPosts();
 
-    for (final post in data) {
-      posts.add(Post(
-        title: post['title'],
-        body: post['body'],
-      ));
+    try {
+      final List<dynamic> data = await _webclient.requestPosts();
+      for (final post in data) {
+        posts.add(Post(
+          title: post['title'],
+          body: post['body'],
+        ));
+      }
+      return PostsList(posts: posts);
+    } on HttpException catch (_) {
+      return const NotFoundPage();
+    } on SocketException catch (_) {
+      return const NotFoundPage(message: 'Sem conexão :(');
     }
-    return PostsList(posts: posts);
   }
 }

@@ -5,9 +5,7 @@ import 'package:salaryfits_posts/screens/not_found.dart';
 class NotFoundPageRoute extends NuRoute {
   @override
   Widget build(BuildContext context, NuRouteSettings<Object?> settings) {
-    return NotFoundPage(
-      onEnterHomePage: () => nuvigator.open("home"),
-    );
+    return const NotFoundPage();
   }
 
   @override
