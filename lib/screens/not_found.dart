@@ -29,6 +29,16 @@ class NotFoundPage extends StatelessWidget {
                     fontWeight: FontWeight.w300,
                   ),
                 ),
+                const Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Text(
+                    'Verifique sua conexão com a internet.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
                   child: ElevatedButton(
