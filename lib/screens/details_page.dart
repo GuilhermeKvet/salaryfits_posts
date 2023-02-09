@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:salaryfits_posts/utils/format_text.dart';
 
+import '../model/post_model.dart';
+
 class DetailsPage extends StatelessWidget {
   final String? title;
   final String? body;

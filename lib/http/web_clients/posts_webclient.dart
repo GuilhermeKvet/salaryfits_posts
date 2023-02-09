@@ -1,20 +1,28 @@
 import 'dart:convert';
 import 'package:salaryfits_posts/http/client.dart';
 
+import '../../cache/cache_posts.dart';
+
 class PostsWebClient {
   final Uri url = Uri.https('jsonplaceholder.typicode.com', 'posts');
 
   Future<List> requestPosts() async {
-    final response = await client.get(url);
-    final List<dynamic> allPosts = jsonDecode(response.body);
+    List<dynamic> cachedData = await getCachedData();
 
-    if (response.statusCode == 200) {
-      return allPosts;
+    if (cachedData.isEmpty) {
+      final response = await client.get(url);
+      final List<dynamic> allPosts = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        setCachedData(allPosts);
+        return allPosts;
+      } else {
+        throw HttpException(
+          _getMessage(response.statusCode),
+          response.statusCode,
+        );
+      }
     } else {
-      throw HttpException(
-        _getMessage(response.statusCode),
-        response.statusCode,
-      );
+      return cachedData;
     }
   }
 
