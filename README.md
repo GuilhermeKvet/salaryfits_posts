@@ -1,16 +1,42 @@
-# salaryfits_posts
+# SalaryFits Posts <img align="center" alt="" height="40" width="40" src="assets/images/logo-android.png" />
 
-A new Flutter project.
+## 📄 Sobre
 
-## Getting Started
+SalaryFits Posts é um aplicativo mobile, que renderiza todos os Posts obtidos através de uma API, com a opção de selecionar um post específico para ver detalhadamente.
 
-This project is a starting point for a Flutter application.
+<div style="display: flex">
+  <img src="prints/abertura.png" width="200" />
+  <img src="prints/home.png" width="200" style="margin-left: 20px" />
+  <img src="prints/details.png" width="200" style="margin-left: 20px" />
+</div>
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠 Ferramentas & Metodologias Utilizadas
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter / Dart
+- Nuvigator
+- Shared Preferences
+- Tratamento de erros
+- Http
+- Componentização
+
+---
+
+## 👨‍💻 Algumas funções implementadas:
+
+- Tratamento de erros.\
+ \- Diferentes telas dependendo do erro.
+<div style="display: flex">
+  <img src="prints/networking.png" width="200" />
+  <img src="prints/notfound.png" width="200" style="margin-left: 20px" />
+</div>
+<br>
+
+- Cache.\
+  \- Para tornar o app mais performático, evitando requisições desnecessárias \
+  \- Opção de apagar cache ao clicar na lixeira da appBar.
+
+<div style="display: flex">
+  <img src="prints/clearcache.png" width="200" />
+</div>

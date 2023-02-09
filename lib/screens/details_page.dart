@@ -23,7 +23,7 @@ class DetailsPage extends StatelessWidget {
           color: Colors.black,
         ),
         title: const Text(
-          'Detais',
+          'Details',
           style: TextStyle(
             fontWeight: FontWeight.w700,
             color: Colors.black,

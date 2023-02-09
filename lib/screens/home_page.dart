@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:salaryfits_posts/cache/cache_posts.dart';
 import 'package:salaryfits_posts/components/snackbar_dialog.dart';
-import 'package:salaryfits_posts/screens/not_found.dart';
+import 'package:salaryfits_posts/core/app_images.dart';
+import 'package:salaryfits_posts/screens/error_page.dart';
 import 'package:salaryfits_posts/http/web_clients/posts_webclient.dart';
 import 'package:salaryfits_posts/model/post_model.dart';
 
@@ -58,10 +59,10 @@ class HomePage extends StatelessWidget {
                 if (snapshot.hasData) {
                   return snapshot.data!;
                 } else {
-                  return const NotFoundPage();
+                  return ErrorPage();
                 }
             }
-            return const NotFoundPage();
+            return ErrorPage();
           },
         ),
       ),
@@ -81,9 +82,12 @@ class HomePage extends StatelessWidget {
       }
       return PostsList(posts: posts);
     } on HttpException catch (_) {
-      return const NotFoundPage();
+      return ErrorPage();
     } on SocketException catch (_) {
-      return const NotFoundPage(message: 'Sem conexão :(');
+      return ErrorPage(
+        message: 'Sem conexão :(',
+        image: AppImages.networking,
+      );
     }
   }
 
