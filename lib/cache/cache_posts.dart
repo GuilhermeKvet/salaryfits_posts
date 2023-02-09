@@ -12,3 +12,8 @@ Future<void> setCachedData(List<dynamic> data) async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setString('cached_posts', jsonEncode(data));
 }
+
+Future<void> clearCache() async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.clear();
+}

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:salaryfits_posts/cache/cache_posts.dart';
+import 'package:salaryfits_posts/components/snackbar_dialog.dart';
 import 'package:salaryfits_posts/screens/not_found.dart';
 import 'package:salaryfits_posts/http/web_clients/posts_webclient.dart';
 import 'package:salaryfits_posts/model/post_model.dart';
@@ -31,6 +33,11 @@ class HomePage extends StatelessWidget {
           ),
           automaticallyImplyLeading: false,
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () => _clearCache(context),
+            icon: const Icon(Icons.delete_outline_sharp),
+            color: Colors.black,
+          ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
@@ -78,5 +85,10 @@ class HomePage extends StatelessWidget {
     } on SocketException catch (_) {
       return const NotFoundPage(message: 'Sem conexão :(');
     }
+  }
+
+  _clearCache(BuildContext context) {
+    clearCache();
+    snackbarDialog(context, 'Cache limpo com sucesso');
   }
 }
