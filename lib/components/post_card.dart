@@ -25,7 +25,7 @@ class PostCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 340,
+                width: MediaQuery.of(context).size.width,
                 child: Text(
                   formatText(post.title!),
                   style: const TextStyle(
@@ -40,7 +40,7 @@ class PostCard extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
                     child: SizedBox(
-                      width: 330,
+                      width: MediaQuery.of(context).size.width / 1.4,
                       child: Text(
                         formatText(post.body!),
                         style: const TextStyle(
