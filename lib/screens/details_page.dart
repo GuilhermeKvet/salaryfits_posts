@@ -48,7 +48,7 @@ class DetailsPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 30),
             child: Center(
               child: SizedBox(
-                width: 340,
+                width: MediaQuery.of(context).size.width / 1.3,
                 child: Column(
                   children: [
                     Text(
